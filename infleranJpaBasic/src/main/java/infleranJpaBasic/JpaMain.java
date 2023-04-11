@@ -15,11 +15,11 @@ public class JpaMain {
 			/* 등록 */
 			instMember(em);
 			/* 조회 */
-			findMember(em);
+			//findMember(em);
 			/* 삭제 */
-			deltMember(em);
+			//deltMember(em);
 			/* 수정 */
-			updtMember(em);
+			//updtMember(em);
 			tx.commit();
 		} catch (Exception e) {
 			tx.rollback();
@@ -34,11 +34,15 @@ public class JpaMain {
 		Member memberA = new Member();
 		memberA.setId(20L);
 		memberA.setName("memberA");
+		System.out.println("==BEFORE==");
 		em.persist(memberA);
+		System.out.println("==AFTER==");
 		
 		Member memberB = new Member();
 		memberB.setId(30L);
+		System.out.println("==BEFORE==");
 		memberB.setName("memberB");
+		System.out.println("==AFTER==");
 		em.persist(memberB);
 	}
 	
@@ -63,33 +67,3 @@ public class JpaMain {
 		System.out.println("member.getName : " + member.getName());
 	}
 }
-
-
-/* 등록 */
-//Member member = new Member();
-//member.setId(10L);
-//member.setName("Hello10");
-//
-//em.persist(member);
-
-/* 조회 */
-//Member findMember = em.find(Member.class, 1L);
-//System.out.println(findMember.getId());
-//System.out.println(findMember.getName());
-
-/* 삭제 */
-//em.remove(findMember);
-
-/* 수정 */
-//findMember.setName("HelloJPA");
-//findMember.setId(3L);			/* 조회 */
-//Member findMember = em.find(Member.class, 1L);
-//System.out.println(findMember.getId());
-//System.out.println(findMember.getName());
-
-/* 삭제 */
-//em.remove(findMember);
-
-/* 수정 */
-//findMember.setName("HelloJPA");
-//findMember.setId(3L);
