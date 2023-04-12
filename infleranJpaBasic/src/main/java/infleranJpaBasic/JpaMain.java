@@ -13,9 +13,9 @@ public class JpaMain {
 		tx.begin(); // 트랜잭션 시작
 		try {
 			/* 등록 */
-			instMember(em);
+			//instMember(em);
 			/* 조회 */
-			//findMember(em);
+			findMember(em);
 			/* 삭제 */
 			//deltMember(em);
 			/* 수정 */
