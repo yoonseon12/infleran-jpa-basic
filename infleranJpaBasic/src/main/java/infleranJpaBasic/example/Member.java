@@ -1,4 +1,4 @@
-package infleranJpaBasic;
+package infleranJpaBasic.example;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

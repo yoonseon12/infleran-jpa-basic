@@ -1,19 +1,20 @@
-package infleranJpaBasic;
+package infleranJpaBasic.example;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
-public class UserMain {
+public class Detach {
 	public static void main(String args[]) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction tx = em.getTransaction();
-		tx.begin(); // 트랜잭션 시작
+		tx.begin();
 		try {
-			User user = new User(1L,"유저1",RoleType.BASIC);
-			em.persist(user);
+			Member member = em.find(Member.class, 3L);
+			member.setName("이름변경");
+			em.detach(member);
 			
 			tx.commit();
 		} catch (Exception e) {

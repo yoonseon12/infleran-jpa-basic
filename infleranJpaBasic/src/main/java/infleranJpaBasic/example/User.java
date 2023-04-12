@@ -1,4 +1,4 @@
-package infleranJpaBasic;
+package infleranJpaBasic.example;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

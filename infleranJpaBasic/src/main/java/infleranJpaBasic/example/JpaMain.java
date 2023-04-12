@@ -1,4 +1,4 @@
-package infleranJpaBasic;
+package infleranJpaBasic.example;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
