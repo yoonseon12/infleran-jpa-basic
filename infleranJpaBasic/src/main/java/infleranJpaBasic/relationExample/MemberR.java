@@ -1,12 +1,18 @@
 package infleranJpaBasic.relationExample;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -19,11 +25,15 @@ public class MemberR {
 	
 	@Column(name = "USERNAME")
 	private String username;
-
-//	@Column(name = "TEAM_ID")
-//	private Long teamId;
 	
 	@ManyToOne
-	@JoinColumn(name = "TEAM_ID")
+	@JoinColumn(name = "TEAM_ID", insertable = false, updatable = false)
 	private Team team;
+	
+	@OneToOne
+	@JoinColumn(name="LOCKER_ID")
+	private Locker locker;
+	
+	@OneToMany(mappedBy = "product")
+	private List<MemberProdect> memberProdects = new ArrayList<>();
 }
