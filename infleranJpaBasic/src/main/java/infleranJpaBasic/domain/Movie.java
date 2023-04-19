@@ -1,4 +1,4 @@
-package infleranJpaBasic.inheritanceExample;
+package infleranJpaBasic.domain;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -8,8 +8,8 @@ import lombok.Setter;
 
 @Entity
 @Getter @Setter
-@DiscriminatorValue("Movies")
-public class Movies extends Items {
+@DiscriminatorValue("Movie")
+public class Movie extends Item {
 	private String director;
 	private String actor;
 }

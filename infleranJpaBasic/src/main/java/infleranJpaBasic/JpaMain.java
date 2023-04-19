@@ -1,40 +1,38 @@
-package infleranJpaBasic.example;
+package infleranJpaBasic;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
-import org.hibernate.Hibernate;
+import infleranJpaBasic.casecade.Child;
+import infleranJpaBasic.casecade.Parent;
 
-public class UserMain {
+public class JpaMain {
 	public static void main(String args[]) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		tx.begin(); // 트랜잭션 시작
 		try {
-			System.out.println("시작");
-			User user1 = new User();
-			user1.setUsername("유저1");
-			em.persist(user1);
+			Child child1 = new Child();
+			Child child2 = new Child();
 			
-			User user2 = new User();
-			user2.setUsername("유저2");
-			em.persist(user2);
+			Parent parent = new Parent();
+			parent.addChild(child1);
+			parent.addChild(child2);
+			
+			em.persist(parent);
 			
 			em.flush();
 			em.clear();
 			
-			User refUser = em.getReference(User.class, user1.getId());
-			System.out.println("refUser.getClass : "+refUser.getClass()); // froxy
-			Hibernate.initialize(refUser); // 강제초기화
-			System.out.println(emf.getPersistenceUnitUtil().isLoaded(refUser));
+			Parent findParent = em.find(Parent.class, parent.getId());
+			em.remove(findParent);
 			
 			tx.commit();
 		} catch (Exception e) {
 			tx.rollback();
-			e.printStackTrace();
 		} finally {
 			em.close();
 		}

@@ -1,4 +1,4 @@
-package infleranJpaBasic.inheritanceExample;
+package infleranJpaBasic.domain;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -8,8 +8,8 @@ import lombok.Setter;
 
 @Entity
 @Getter @Setter
-@DiscriminatorValue("Books")
-public class Books extends Items {
+@DiscriminatorValue("Book")
+public class Book extends Item {
 	private String author;
 	private String isbn;
 }
