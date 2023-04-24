@@ -1,8 +1,10 @@
 package infleranJpaBasic.domain;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
@@ -16,13 +18,12 @@ public class Delivery {
 	@Id @GeneratedValue
 	private Long id;
 	
-	private String city;
-	
-	private String street;
+	@Embedded
+	private Address address;
 	
 	@Enumerated(EnumType.STRING)
 	private DeliveryStatus status;
 	
-	@OneToOne(mappedBy = "delivery")
+	@OneToOne(mappedBy = "delivery", fetch = FetchType.LAZY)
 	private Order order;
 }
